@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    body{ background-image: url('');
+            background-size: cover;
+           font-family: cursive;
+            justify-content: center;
+            align-items: center; 
+            height: 100vh;
+          
+           background-color: white;
+           background-size: cover;
+        }
+        d1{
+            height: 15px;
+            width: 100%;
+            justify-content: center;
+            align-items: center; 
+        }
+        h1{
+            background-color: rgb(228, 32, 32);
+
+        }
+        #clickbutton{
+            color: black;
+            font-family: Arial;
+            background-color: rgb(29, 179, 6);
+        } 
+        #video{
+            height: 400px;
+            width: 60%;
+            border: 2px solid rgb(14, 209, 17);
+        }
+        
+#batterylevel{
+    color:  rgb(18, 186, 18);
+}
+
+</style>
+<body>
+
+    <div id="d1"><h1> Press open camera button </h1></div>
+    <br><br>
+
+    <div class="box">
+        <video id="video" autoplay></video><br/>
+        <button id="clickbutton" onclick="openCamera()">   OpenCamera</button><br>
+
+        <button id="clickbutton" onclick="closeCamera()">  CloseCamera</button>
+    </div>
+
+<h2> Battery Level: <span id="batterylevel"> 0%</span></h2>
+<img src="C://Users//User//Pictures//New folder//IMG_20230713_214153_279.jpg" >
+</body>
+<script>
+    
+  {  async function openCamera(){
+        const  stream = await  navigator.mediaDevices.getUserMedia( { video: true } );
+        video.srcObject =stream;
+       
+}
+function closeCamera(){
+    document.getElementById("video").srcObject.getTracks().forEach(track => track
+    .stop());
+}
+  }
+
+
+{
+const batteryLevel = document.getElementById('batterylevel') ;
+navigator.getBattery().then(function(battery){
+    batteryLevel.innerHTML = battery.level * 100 + '%' ;
+    battery.addEventListener('levelchange', function(){
+        batteryLevel.innerHTML = battery.level * 100 + '%' ;
+    })  
+})
+}
+
+
+
+
+</script>
+</html>
